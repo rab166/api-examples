@@ -1,0 +1,124 @@
+openapi: "3.0.1"
+info:
+  version: v1
+  title: Restaurants API
+  description: This is an open API specification document for Restaurants in Lahore.
+  contact:
+    name: RAB
+    email: 
+  license:
+    name: 
+    url: 
+servers:
+  - url: /era/api
+paths:
+  '/v1/restaurants':
+    get:
+      summary: Get Restaurants List
+      operationId: getRestaurantsList
+      description: >
+        Get the complete list of available restaurants.
+      tags:
+        - restaurants
+      security:
+        - OAuth2:
+            - '#RestaurantsView'
+      parameters:
+        - name: name
+          in: query
+          description: Name of Restaurant
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: Type of restaurant
+          schema:
+            type: string
+            maxLength: 50
+        - name: rating
+          in: query
+          description: Rating of restaurant
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Restaurants list returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestaurantsListResponse'
+        '400':
+          description: Bad Request
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+      code:
+        type: integer
+      message:
+        type: string
+
+    RestaurantsListResponse:
+      type: object
+      properties:
+        restaurants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Restaurant'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    
+    Restaurant:
+      type: object
+      properties:
+        restaurantId:
+          type: integer
+        name:
+          type: string
+          maxLength: 250
+        type:
+          type: string
+        rating:
+          type: string
+        logo:
+          type: string
+        cusineType:
+          type: string
+        seatingCapacity:
+          type: string
+        openTime:
+          type: string
+        closeTime:
+          type: string
+    Pagination:
+      type: object
+      required:
+        - totalItems
+      properties:
+        totalItems:
+          type: integer
+    Page:
+      type: object
+      properties:
+        pageNumber:
+          description: Page number starting with zero
+          type: integer
+          format: int32
+          default: 0
+          minimum: 0
+        size:
+          description: Page size to fetch the no of records. Max supported max page size to 1000. Client will call multiple times if records are more then 1000.
+          type: integer
+          format: int32
+          default: 1000
+          minimum: 1
+          maximum: 1000
+          example: 1000
