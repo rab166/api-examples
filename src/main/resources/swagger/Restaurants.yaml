@@ -55,6 +55,62 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  '/v1/restaurant':
+    post:
+      summary: Add a restaurant
+      operationId: addRestaurant
+      security:
+        - OAuth2:
+            - '#AddRestaurant'
+      description: Add a restaurant via this api
+      tags:
+        - restaurants
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Restaurant'
+      responses:
+        '200':
+          description: Restaurant added successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddRestaurantResponse'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  '/v1/restaurant/{restaurantid}':              
+    delete:
+      summary: Delete a restaurant
+      operationId: deleteRestaurant
+      security:
+        - OAuth2:
+            - '#DeleteRestaurant'
+      description: Delete a restaurant via this api
+      tags:
+        - restaurants
+      parameters:
+        - name: restaurantId
+          schema:
+            type: integer
+          required: true
+          in: path
+      responses:
+        '200':
+          description: Restaurant deleted successfully
+        '400':
+          description: Bad Request
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'  
+                                
 components:
   schemas:
     Error:
@@ -75,6 +131,12 @@ components:
             $ref: '#/components/schemas/Restaurant'
         pagination:
           $ref: '#/components/schemas/Pagination'
+          
+    AddRestaurantResponse:
+      type: object
+      properties:
+        restaurant:
+          $ref: '#/components/schemas/Restaurant'
     
     Restaurant:
       type: object
