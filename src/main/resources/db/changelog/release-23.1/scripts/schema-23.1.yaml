@@ -1,0 +1,22 @@
+databaseChangeLog:
+- changeSet:
+    id: schema-23.1-schema
+    author: ranab
+    changes:
+    - createTable:
+        tableName: ApplicationType
+        columns:
+        - column:
+            name: ApplicationTypeId
+            type: VARCHAR(50)
+            constraints:
+                nullable: false
+        - column:
+            name: AppId
+            type: VARCHAR(10)
+            constraints:
+                nullable: false        
+    - addPrimaryKey:
+        tableName: ApplicationType
+        columnNames: ApplicationTypeId
+        constraintName: PK_ApplicationType    

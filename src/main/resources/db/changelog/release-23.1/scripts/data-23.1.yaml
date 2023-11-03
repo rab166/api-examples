@@ -1,0 +1,14 @@
+databaseChangeLog:
+- changeSet:
+    id: data-23.1-data
+    author: ranab
+    changes:
+    - insert:
+        tableName: ApplicationType
+        columns:
+        - column:
+            name: ApplicationTypeId
+            value: myapptype
+        - column:
+            name: AppId
+            value: myapp   
