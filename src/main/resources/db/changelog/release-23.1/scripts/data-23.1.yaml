@@ -4,11 +4,83 @@ databaseChangeLog:
     author: ranab
     changes:
     - insert:
-        tableName: ApplicationType
+        tableName: Restaurant
         columns:
         - column:
-            name: ApplicationTypeId
-            value: myapptype
+            name: Name
+            value: Hardees
         - column:
-            name: AppId
-            value: myapp   
+            name: RestaurantType
+            value: Fast Food   
+        - column:
+            name: Rating
+            value: 3   
+        - column:
+            name: Logo
+            value:    
+        - column:
+            name: CusineType
+            value: American Cuisine   
+        - column:
+            name: SeatingCapacity
+            value: 50   
+        - column:
+            name: OpenTime
+            value: 10Hrs   
+        - column:
+            name: CloseTime
+            value: 23Hrs   
+    - insert:
+        tableName: Restaurant
+        columns:
+        - column:
+            name: Name
+            value: Nisa Sultan
+        - column:
+            name: RestaurantType
+            value: Bistro   
+        - column:
+            name: Rating
+            value: 3 
+        - column:
+            name: Logo
+            value:    
+        - column:
+            name: CusineType
+            value: Turkish Cuisine   
+        - column:
+            name: SeatingCapacity
+            value: 50   
+        - column:
+            name: OpenTime
+            value: 10Hrs   
+        - column:
+            name: CloseTime
+            value: 23Hrs
+    - insert:
+        tableName: Restaurant
+        columns:
+        - column:
+            name: Name
+            value: The English Teahouse
+        - column:
+            name: RestaurantType
+            value: Casual Dining   
+        - column:
+            name: Rating
+            value: 3 
+        - column:
+            name: Logo
+            value:    
+        - column:
+            name: CusineType
+            value: Western Cuisine   
+        - column:
+            name: SeatingCapacity
+            value: 50   
+        - column:
+            name: OpenTime
+            value: 10Hrs   
+        - column:
+            name: CloseTime
+            value: 23Hrs              

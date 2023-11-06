@@ -4,19 +4,55 @@ databaseChangeLog:
     author: ranab
     changes:
     - createTable:
-        tableName: ApplicationType
+        tableName: Restaurant
         columns:
         - column:
-            name: ApplicationTypeId
-            type: VARCHAR(50)
+            name: Id
+            type: INT
+            constraints:
+                nullable: false
+            autoIncrement: true    
+        - column:
+            name: Name
+            type: VARCHAR(250)
+            constraints:
+                nullable: false        
+        - column:
+            name: RestaurantType
+            type: VARCHAR(100)
             constraints:
                 nullable: false
         - column:
-            name: AppId
+            name: Rating
+            type: VARCHAR(100)
+            constraints:
+                nullable: false       
+        - column:
+            name: Logo
+            type: VARCHAR(250)
+            constraints:
+                nullable: true       
+        - column:
+            name: CusineType
+            type: VARCHAR(250)
+            constraints:
+                nullable: false       
+        - column:
+            name: SeatingCapacity
             type: VARCHAR(10)
             constraints:
-                nullable: false        
+                nullable: false       
+        - column:
+            name: OpenTime
+            type: VARCHAR(100)
+            constraints:
+                nullable: false       
+        - column:
+            name: CloseTime
+            type: VARCHAR(100)
+            constraints:
+                nullable: false       
     - addPrimaryKey:
-        tableName: ApplicationType
-        columnNames: ApplicationTypeId
-        constraintName: PK_ApplicationType    
+        tableName: Restaurant
+        columnNames: Id
+        constraintName: PK_Restaurant    
