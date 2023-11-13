@@ -109,7 +109,64 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'  
+                $ref: '#/components/schemas/Error'
+    get:
+      summary: Get restaurant detail
+      operationId: getRestaurantDetail
+      security:
+        - OAuth2:
+            - '#ViewRestaurant'
+      description: Retrieve restaurant details via this api
+      tags:
+        - restaurants
+      parameters:
+        - name: restaurantId
+          schema:
+            type: integer
+          required: true
+          in: path
+      responses:
+        '200':
+          description: Restaurant details fetched successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Restaurant'
+        '400':
+          description: Bad Request
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  '/v1/restaurant':              
+    put:
+      summary: Update restaurant detail
+      operationId: updateRestaurantDetail
+      security:
+        - OAuth2:
+            - '#AddRestaurant'
+      description: Update restaurant details via this api
+      tags:
+        - restaurants
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Restaurant'
+      responses:
+        '200':
+          description: Restaurant updated successfully
+        '400':
+          description: Bad Request
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'                          
                                 
 components:
   schemas:
